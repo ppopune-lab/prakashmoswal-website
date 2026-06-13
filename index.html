@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prakash M Oswal & Co. | Chartered Accountants</title>
+    
+    <!-- Tailwind CSS for Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Configurations & Animations -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+        
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        .slide-in-right { animation: slideInRight 0.5s ease-out forwards; }
+
+        /* Hides sections that are not currently active */
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+    </style>
+</head>
+<body class="text-[#0d1b2a] bg-white antialiased selection:bg-[#041E42] selection:text-white flex flex-col min-h-screen">
+
+    <!-- ==========================================
+         HEADER / NAVIGATION
+         ========================================== -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer py-2 group" onclick="navigateTo('home')">
+                    <!-- Ensure the image filename matches exactly what you upload to GitHub -->
+                    <img 
+                        src="Gemini_Generated_Image_m83yujm83yujm83y-removebg-preview.png" 
+                        alt="Prakash M Oswal & Co. Logo" 
+                        class="h-16 md:h-20 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                        onerror="this.onerror=null; this.src='https://placehold.co/400x120/f8fafc/041E42?text=Your+Logo+Here';"
+                    />
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex space-x-8 items-center">
+                    <button onclick="navigateTo('home')" class="nav-link text-sm font-bold tracking-wide transition-colors text-[#041E42] border-b-2 border-[#041E42] pb-1" data-target="home">Home</button>
+                    <button onclick="navigateTo('about')" class="nav-link text-sm font-bold tracking-wide transition-colors text-gray-500 hover:text-[#041E42]" data-target="about">About Us</button>
+                    <button onclick="navigateTo('services')" class="nav-link text-sm font-bold tracking-wide transition-colors text-gray-500 hover:text-[#041E42]" data-target="services">Services</button>
+                    <button onclick="navigateTo('insights')" class="nav-link text-sm font-bold tracking-wide transition-colors text-gray-500 hover:text-[#041E42]" data-target="insights">Insights</button>
+                    <button onclick="navigateTo('contact')" class="nav-link text-sm font-bold tracking-wide transition-colors text-gray-500 hover:text-[#041E42]" data-target="contact">Contact</button>
+                    
+                    <a href="https://calendly.com/pranavoswal-prakashmoswal/30min" target="_blank" class="bg-[#041E42] text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-[#0a2f60] transition-colors flex items-center gap-2 shadow-lg shadow-blue-900/20 hover:shadow-blue-900/40 transform hover:-translate-y-0.5">
+                        <i data-lucide="calendar" class="w-4 h-4"></i> Book Consultation
+                    </a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-gray-600 hover:text-[#041E42] focus:outline-none">
+                        <i data-lucide="menu" id="mobile-menu-icon" class="h-7 w-7"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-gray-100 absolute w-full left-0 shadow-2xl">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <button onclick="navigateTo('home')" class="block w-full text-left px-4 py-3 rounded-xl text-base font-bold tracking-wide bg-[#f4f7fb] text-[#041E42]">Home</button>
+                <button onclick="navigateTo('about')" class="block w-full text-left px-4 py-3 rounded-xl text-base font-bold tracking-wide text-gray-600 hover:bg-gray-50">About Us</button>
+                <button onclick="navigateTo('services')" class="block w-full text-left px-4 py-3 rounded-xl text-base font-bold tracking-wide text-gray-600 hover:bg-gray-50">Services</button>
+                <button onclick="navigateTo('insights')" class="block w-full text-left px-4 py-3 rounded-xl text-base font-bold tracking-wide text-gray-600 hover:bg-gray-50">Insights</button>
+                <button onclick="navigateTo('contact')" class="block w-full text-left px-4 py-3 rounded-xl text-base font-bold tracking-wide text-gray-600 hover:bg-gray-50">Contact</button>
+                <a href="https://calendly.com/pranavoswal-prakashmoswal/30min" target="_blank" class="mt-6 flex justify-center items-center gap-2 w-full text-center bg-[#041E42] text-white px-5 py-4 rounded-xl text-base font-bold shadow-lg">
+                    <i data-lucide="calendar" class="w-5 h-5"></i> Book Consultation
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         MAIN CONTENT (Dynamic Pages)
+         ========================================== -->
+    <main class="flex-grow">
+        
+        <!-- === HOME PAGE === -->
+        <div id="home" class="page-section active animate-fade-in">
+            <!-- Hero Section -->
+            <section class="relative pt-24 pb-32 lg:pt-36 lg:pb-40 overflow-hidden bg-white">
+                <div class="absolute top-0 right-0 w-1/2 h-full bg-[#f4f7fb] rounded-bl-[120px] -z-10 hidden lg:block"></div>
+                <div class="absolute top-20 right-20 w-64 h-64 bg-blue-50 rounded-full blur-3xl opacity-50 -z-10 hidden lg:block"></div>
+                <div class="absolute bottom-20 left-10 w-72 h-72 bg-gray-50 rounded-full blur-3xl opacity-50 -z-10"></div>
+                
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="max-w-3xl">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-[#041E42] text-xs font-bold uppercase tracking-widest mb-8 shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+                            A Peer Reviewed Firm
+                        </div>
+                        <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight text-[#041E42] mb-6 leading-[1.1]">
+                            Precision. <br/>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#041E42] to-blue-600">Strategy.</span><br/>
+                            Growth.
+                        </h1>
+                        <p class="text-xl text-gray-600 mb-10 leading-relaxed font-medium">
+                            Empowering fast-growing businesses with comprehensive audit, taxation, transaction advisory, and strategic financial services since 25+ years.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-5">
+                            <button onclick="navigateTo('services')" class="bg-[#041E42] text-white px-8 py-4 rounded-full font-bold hover:bg-[#0a2f60] transition-all flex items-center justify-center gap-3 shadow-xl shadow-blue-900/20 hover:shadow-blue-900/40 transform hover:-translate-y-1 w-fit">
+                                Explore Services <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="relative z-20 -mt-16 mx-4 sm:mx-8 lg:mx-auto max-w-6xl">
+                <div class="bg-white rounded-3xl shadow-2xl shadow-gray-200/50 border border-gray-100 p-8 md:p-12">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-gray-100 text-center">
+                        <div class="group">
+                            <i data-lucide="award" class="w-8 h-8 mx-auto text-blue-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                            <div class="text-4xl md:text-5xl font-black text-[#041E42]">25+</div>
+                            <div class="text-xs text-gray-500 mt-3 font-bold uppercase tracking-widest">Years Experience</div>
+                        </div>
+                        <div class="group">
+                            <i data-lucide="building-2" class="w-8 h-8 mx-auto text-blue-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                            <div class="text-4xl md:text-5xl font-black text-[#041E42]">1000+</div>
+                            <div class="text-xs text-gray-500 mt-3 font-bold uppercase tracking-widest">Clients Served</div>
+                        </div>
+                        <div class="group">
+                            <i data-lucide="pie-chart" class="w-8 h-8 mx-auto text-blue-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                            <div class="text-4xl md:text-5xl font-black text-[#041E42]">15+</div>
+                            <div class="text-xs text-gray-500 mt-3 font-bold uppercase tracking-widest">Sectors</div>
+                        </div>
+                        <div class="group">
+                            <i data-lucide="users" class="w-8 h-8 mx-auto text-blue-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                            <div class="text-4xl md:text-5xl font-black text-[#041E42]">80+</div>
+                            <div class="text-xs text-gray-500 mt-3 font-bold uppercase tracking-widest">Team Members</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Services Section -->
+            <section class="py-32 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-20">
+                        <h2 class="text-4xl md:text-5xl font-black text-[#041E42] mb-6">Comprehensive Financial Solutions</h2>
+                        <p class="text-gray-600 text-xl max-w-3xl mx-auto font-medium">We offer a full spectrum of chartered accountancy services designed to ensure compliance, mitigate risk, and accelerate growth.</p>
+                    </div>
+
+                    <div class="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center">
+                        
+                        <!-- Tabs -->
+                        <div class="lg:w-2/5 flex flex-col gap-4 w-full">
+                            <!-- Audit -->
+                            <button onclick="showService('home', 'audit')" id="tab-home-audit" class="service-tab-home text-left p-6 rounded-2xl transition-all duration-300 flex items-center gap-5 group w-full bg-[#041E42] text-white shadow-xl shadow-blue-900/20 scale-105 transform z-10 border-transparent">
+                                <div class="icon-container p-3 rounded-xl transition-colors duration-300 bg-white/20 text-white">
+                                    <i data-lucide="file-search" class="w-6 h-6"></i>
+                                </div>
+                                <span class="font-bold text-xl">Audit & Assurance</span>
+                                <i data-lucide="chevron-right" class="chevron w-6 h-6 ml-auto opacity-50 block"></i>
+                            </button>
+                            <!-- Tax -->
+                            <button onclick="showService('home', 'tax')" id="tab-home-tax" class="service-tab-home text-left p-6 rounded-2xl transition-all duration-300 flex items-center gap-5 group w-full bg-white border-2 border-gray-100 text-gray-700 hover:border-gray-300 hover:bg-gray-50">
+                                <div class="icon-container p-3 rounded-xl transition-colors duration-300 bg-[#f4f7fb] text-[#041E42] group-hover:bg-white group-hover:shadow-sm">
+                                    <i data-lucide="file-text" class="w-6 h-6"></i>
+                                </div>
+                                <span class="font-bold text-xl">Taxation & Compliance</span>
+                                <i data-lucide="chevron-right" class="chevron w-6 h-6 ml-auto opacity-50 hidden"></i>
+                            </button>
+                            <!-- Transaction -->
+                            <button onclick="showService('home', 'transaction')" id="tab-home-transaction" class="service-tab-home text-left p-6 rounded-2xl transition-all duration-300 flex items-center gap-5 group w-full bg-white border-2 border-gray-100 text-gray-700 hover:border-gray-300 hover:bg-gray-50">
+                                <div class="icon-container p-3 rounded-xl transition-colors duration-300 bg-[#f4f7fb] text-[#041E42] group-hover:bg-white group-hover:shadow-sm">
+                                    <i data-lucide="scale" class="w-6 h-6"></i>
+                                </div>
+                                <span class="font-bold text-xl">Transaction Advisory</span>
+                                <i data-lucide="chevron-right" class="chevron w-6 h-6 ml-auto opacity-50 hidden"></i>
+                            </button>
+                            <!-- VCFO -->
+                            <button onclick="showService('home', 'vcfo')" id="tab-home-vcfo" class="service-tab-home text-left p-6 rounded-2xl transition-all duration-300 flex items-center gap-5 group w-full bg-white border-2 border-gray-100 text-gray-700 hover:border-gray-300 hover:bg-gray-50">
+                                <div class="icon-container p-3 rounded-xl transition-colors duration-300 bg-[#f4f7fb] text-[#041E42] group-hover:bg-white group-hover:shadow-sm">
+                                    <i data-lucide="trending-up" class="w-6 h-6"></i>
+                                </div>
+                                <span class="font-bold text-xl">Virtual CFO & Funding</span>
+                                <i data-lucide="chevron-right" class="chevron w-6 h-6 ml-auto opacity-50 hidden"></i>
+                            </button>
+                            <!-- Accounting -->
+                            <button onclick="showService('home', 'accounting')" id="tab-home-accounting" class="service-tab-home text-left p-6 rounded-2xl transition-all duration-300 flex items-center gap-5 group w-full bg-white border-2 border-gray-100 text-gray-700 hover:border-gray-300 hover:bg-gray-50">
+                                <div class="icon-container p-3 rounded-xl transition-colors duration-300 bg-[#f4f7fb] text-[#041E42] group-hover:bg-white group-hover:shadow-sm">
+                                    <i data-lucide="pie-chart" class="w-6 h-6"></i>
+                                </div>
+                                <span class="font-bold text-xl">Accounting & Bookkeeping</span>
+                                <i data-lucide="chevron-right" class="chevron w-6 h-6 ml-auto opacity-50 hidden"></i>
+                            </button>
+                        </div>
+
+                        <!-- Detail Cards -->
+                        <div class="lg:w-3/5 w-full">
+                            <!-- Audit Detail -->
+                            <div id="detail-home-audit" class="service-detail-home bg-[#f4f7fb] rounded-3xl p-10 md:p-14 border border-gray-200 h-full shadow-inner flex flex-col justify-center slide-in-right block">
+                                <div class="w-20 h-20 bg-white rounded-2xl shadow-md flex items-center justify-center mb-10 text-[#041E42] transform -rotate-3">
+                                    <i data-lucide="file-search" class="w-10 h-10"></i>
+                                </div>
+                                <h3 class="text-4xl font-black text-[#041E42] mb-6">Audit & Assurance</h3>
+                                <p class="text-gray-700 text-xl mb-10 leading-relaxed font-medium">We provide comprehensive audit methodologies tailored to your industry, ensuring strict regulatory compliance, accurate reporting, and robust governance frameworks.</p>
+                                <div class="grid sm:grid-cols-2 gap-x-10 gap-y-6 mb-12">
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Statutory Audits & Audits of NBFCs</span></div>
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Risk-Focused Internal Audits</span></div>
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">GST Audits</span></div>
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Design & Testing of Controls</span></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Tax Detail -->
+                            <div id="detail-home-tax" class="service-detail-home bg-[#f4f7fb] rounded-3xl p-10 md:p-14 border border-gray-200 h-full shadow-inner flex flex-col justify-center slide-in-right hidden">
+                                <div class="w-20 h-20 bg-white rounded-2xl shadow-md flex items-center justify-center mb-10 text-[#041E42] transform -rotate-3">
+                                    <i data-lucide="file-text" class="w-10 h-10"></i>
+                                </div>
+                                <h3 class="text-4xl font-black text-[#041E42] mb-6">Taxation & Compliance</h3>
+                                <p class="text-gray-700 text-xl mb-10 leading-relaxed font-medium">Comprehensive tax solutions ensuring optimized, compliant outcomes. We assist with filing, planning, and representation before authorities to minimize risk and maximize efficiency.</p>
+                                <div class="grid sm:grid-cols-2 gap-x-10 gap-y-6 mb-12">
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Income Tax Returns (IT Returns)</span></div>
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">GST Returns & Regular Compliance</span></div>
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Corporate & Individual Tax Planning</span></div>
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Representation before Authorities</span></div>
+                                </div>
+                            </div>
+
+                            <!-- Transaction Detail -->
+                            <div id="detail-home-transaction" class="service-detail-home bg-[#f4f7fb] rounded-3xl p-10 md:p-14 border border-gray-200 h-full shadow-inner flex flex-col justify-center slide-in-right hidden">
+                                <div class="w-20 h-20 bg-white rounded-2xl shadow-md flex items-center justify-center mb-10 text-[#041E42] transform -rotate-3">
+                                    <i data-lucide="scale" class="w-10 h-10"></i>
+                                </div>
+                                <h3 class="text-4xl font-black text-[#041E42] mb-6">Transaction Advisory</h3>
+                                <p class="text-gray-700 text-xl mb-10 leading-relaxed font-medium">Guiding businesses through critical growth phases, acquisitions, and restructuring with meticulous financial analysis and objective valuation metrics.</p>
+                                <div class="grid sm:grid-cols-2 gap-x-10 gap-y-6 mb-12">
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Business Valuation</span></div>
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Mergers & Acquisitions (M&A)</span></div>
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Financial & Tax Due Diligence</span></div>
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Entity Structuring</span></div>
+                                </div>
+                            </div>
+
+                            <!-- VCFO Detail -->
+                            <div id="detail-home-vcfo" class="service-detail-home bg-[#f4f7fb] rounded-3xl p-10 md:p-14 border border-gray-200 h-full shadow-inner flex flex-col justify-center slide-in-right hidden">
+                                <div class="w-20 h-20 bg-white rounded-2xl shadow-md flex items-center justify-center mb-10 text-[#041E42] transform -rotate-3">
+                                    <i data-lucide="trending-up" class="w-10 h-10"></i>
+                                </div>
+                                <h3 class="text-4xl font-black text-[#041E42] mb-6">Virtual CFO & Funding</h3>
+                                <p class="text-gray-700 text-xl mb-10 leading-relaxed font-medium">Strategic finance leadership integrated with your team to drive growth, manage cash flows, create robust project reports, and secure external capital.</p>
+                                <div class="grid sm:grid-cols-2 gap-x-10 gap-y-6 mb-12">
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Fundraising Support & Pitch Decks</span></div>
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Preparation of Project Reports</span></div>
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Cash flow management</span></div>
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Board-ready MIS</span></div>
+                                </div>
+                            </div>
+
+                            <!-- Accounting Detail -->
+                            <div id="detail-home-accounting" class="service-detail-home bg-[#f4f7fb] rounded-3xl p-10 md:p-14 border border-gray-200 h-full shadow-inner flex flex-col justify-center slide-in-right hidden">
+                                <div class="w-20 h-20 bg-white rounded-2xl shadow-md flex items-center justify-center mb-10 text-[#041E42] transform -rotate-3">
+                                    <i data-lucide="pie-chart" class="w-10 h-10"></i>
+                                </div>
+                                <h3 class="text-4xl font-black text-[#041E42] mb-6">Accounting & Bookkeeping</h3>
+                                <p class="text-gray-700 text-xl mb-10 leading-relaxed font-medium">Keeping your financial records accurate, current, and decision-ready throughout the year leveraging modern accounting and ERP tools.</p>
+                                <div class="grid sm:grid-cols-2 gap-x-10 gap-y-6 mb-12">
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">End-to-end Bookkeeping</span></div>
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Statutory Statement Preparation</span></div>
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Payroll Processing</span></div>
+                                    <div class="flex items-start gap-4"><div class="bg-white p-1 rounded-full shadow-sm mt-1"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">AP/AR Management</span></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Generic Learn More button for all tabs -->
+                            <button onclick="navigateTo('services')" class="mt-8 inline-flex items-center gap-3 bg-white text-[#041E42] border border-gray-200 px-6 py-3 rounded-full font-bold hover:shadow-md transition-all w-fit group">
+                                View all service details <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="py-24 bg-[#041E42] text-white">
+                <div class="max-w-4xl mx-auto px-4 text-center">
+                    <h2 class="text-4xl md:text-5xl font-black mb-8">Ready to strengthen your financial foundation?</h2>
+                    <p class="text-xl text-gray-300 mb-12">Let's discuss how our expertise can align with your business goals.</p>
+                    <a href="https://calendly.com/pranavoswal-prakashmoswal/30min" target="_blank" class="inline-flex bg-white text-[#041E42] px-10 py-5 rounded-full font-black text-lg hover:bg-gray-100 transition-colors shadow-2xl hover:scale-105 transform duration-300 items-center gap-3">
+                        <i data-lucide="calendar" class="w-6 h-6"></i> Book a Strategy Session
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- === ABOUT PAGE === -->
+        <div id="about" class="page-section py-24 animate-fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Header -->
+                <div class="max-w-4xl mb-24">
+                    <h1 class="text-5xl md:text-6xl font-black text-[#041E42] mb-8">Who Are We?</h1>
+                    <p class="text-2xl text-gray-700 leading-relaxed mb-8 font-medium">
+                        Prakash M Oswal & Co. is a premier, Peer-Reviewed Chartered Accountancy firm based in Pune. We are a full-service practice committed to delivering holistic financial solutions to startups, SMEs, and established corporates across diverse industries.
+                    </p>
+                    <p class="text-xl text-gray-600 leading-relaxed">
+                        With a robust team of 80+ professionals and decades of legacy, our capabilities encompass statutory and internal audits, complex taxation and compliance, precise accounting, dynamic transaction advisory (M&A, due diligence, valuation), and strategic Virtual CFO services. We pride ourselves on uncompromised integrity, rigorous discipline, and a modern, tech-savvy approach to navigating today's complex regulatory landscapes.
+                    </p>
+                </div>
+
+                <!-- Why Partner -->
+                <div class="grid md:grid-cols-2 gap-12 mb-32">
+                    <div class="bg-[#f4f7fb] p-12 rounded-3xl border border-gray-100 hover:shadow-lg transition-shadow">
+                        <h3 class="text-3xl font-black text-[#041E42] mb-6 flex items-center gap-4">
+                            <div class="bg-white p-3 rounded-xl shadow-sm"><i data-lucide="briefcase" class="w-8 h-8 text-blue-600"></i></div> Strategic + Practical
+                        </h3>
+                        <p class="text-xl text-gray-700 leading-relaxed">
+                            We combine board-level strategic perspective with hands-on execution. Whether it is ensuring a flawless statutory audit, structuring a complex M&A transaction, or optimizing daily cash flows, our high-involvement model ensures results.
+                        </p>
+                    </div>
+                    <div class="bg-[#f4f7fb] p-12 rounded-3xl border border-gray-100 hover:shadow-lg transition-shadow">
+                        <h3 class="text-3xl font-black text-[#041E42] mb-6 flex items-center gap-4">
+                            <div class="bg-white p-3 rounded-xl shadow-sm"><i data-lucide="globe" class="w-8 h-8 text-blue-600"></i></div> Modern + Tech-Savvy
+                        </h3>
+                        <p class="text-xl text-gray-700 leading-relaxed">
+                            Fluent across mainstream accounting, ERP, and reporting tools. We support seamless remote and hybrid engagements, enabling robust pan-India and cross-border delivery tailored to your specific business scale.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Team Section -->
+                <div>
+                    <h2 class="text-4xl font-black text-[#041E42] mb-16 border-b-4 border-gray-100 pb-6">Leadership Team</h2>
+                    <div class="grid md:grid-cols-2 gap-20">
+                        <!-- Prakash Oswal -->
+                        <div class="group flex flex-col h-full bg-white border border-gray-100 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300">
+                            <div class="aspect-[4/5] bg-gray-100 rounded-2xl mb-8 overflow-hidden">
+                                <img src="image_fb189d.jpg" alt="CA Prakash M Oswal" onerror="this.onerror=null; this.src='https://placehold.co/600x800/e2e8f0/041E42?text=CA+Prakash+M+Oswal';" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 rounded-2xl"/>
+                            </div>
+                            <h3 class="text-3xl font-black text-[#041E42]">CA Prakash M Oswal</h3>
+                            <p class="text-sm font-black text-blue-600 uppercase tracking-widest mt-2 mb-6">Founder & Principal</p>
+                            <p class="text-lg text-gray-700 leading-relaxed flex-grow">Chartered accountant with over 25 years of experience in audit, taxation, and advisory, leading the firm's overall practice and managing client relationships.</p>
+                        </div>
+                        
+                        <!-- Pranav Oswal -->
+                        <div class="group flex flex-col h-full bg-white border border-gray-100 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300">
+                            <div class="aspect-[4/5] bg-gray-100 rounded-2xl mb-8 overflow-hidden">
+                                <img src="image_fb185f.jpg" alt="CA Pranav Oswal" onerror="this.onerror=null; this.src='https://placehold.co/600x800/e2e8f0/041E42?text=CA+Pranav+Oswal';" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 rounded-2xl"/>
+                            </div>
+                            <h3 class="text-3xl font-black text-[#041E42]">CA Pranav Oswal</h3>
+                            <p class="text-sm font-black text-blue-600 uppercase tracking-widest mt-2 mb-6">Manager</p>
+                            <p class="text-lg text-gray-700 leading-relaxed flex-grow">Chartered Accountant and CFA Level III candidate with experience in investor relations at Motilal Oswal and audit training at PwC. Skilled in capital markets, financial modeling, and Big 4 audit discipline.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- === SERVICES PAGE === -->
+        <div id="services" class="page-section py-24 bg-[#f8fafc] animate-fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mb-20">
+                    <h1 class="text-5xl md:text-6xl font-black text-[#041E42] mb-8">Our Services</h1>
+                    <p class="text-2xl text-gray-700 font-medium">
+                        Comprehensive financial, audit, and advisory solutions tailored to your business needs, structured for scale, and built on a foundation of uncompromised integrity.
+                    </p>
+                </div>
+
+                <div class="space-y-12">
+                    <!-- Service: Audit -->
+                    <div class="bg-white rounded-3xl p-10 md:p-16 border border-gray-100 shadow-md flex flex-col md:flex-row gap-16 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="md:w-1/3">
+                            <div class="w-20 h-20 bg-[#f4f7fb] rounded-2xl flex items-center justify-center mb-8 text-[#041E42] border border-gray-100 shadow-sm"><i data-lucide="file-search" class="w-10 h-10"></i></div>
+                            <h2 class="text-3xl font-black text-[#041E42] mb-4">Audit & Assurance</h2>
+                            <p class="text-gray-600 font-bold text-lg leading-relaxed">Robust statutory and internal audits enhancing financial credibility.</p>
+                        </div>
+                        <div class="md:w-2/3 md:border-l-2 border-gray-100 md:pl-16">
+                            <p class="text-gray-800 mb-10 leading-relaxed text-xl">We provide comprehensive audit methodologies tailored to your industry, ensuring strict regulatory compliance, accurate reporting, and robust governance frameworks.</p>
+                            <div class="grid sm:grid-cols-2 gap-6">
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Statutory Audits & Audits of NBFCs</span></div>
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Risk-Focused Internal Audits</span></div>
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">GST Audits</span></div>
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Design & Testing of Internal Controls</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Service: Taxation -->
+                    <div class="bg-white rounded-3xl p-10 md:p-16 border border-gray-100 shadow-md flex flex-col md:flex-row gap-16 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="md:w-1/3">
+                            <div class="w-20 h-20 bg-[#f4f7fb] rounded-2xl flex items-center justify-center mb-8 text-[#041E42] border border-gray-100 shadow-sm"><i data-lucide="file-text" class="w-10 h-10"></i></div>
+                            <h2 class="text-3xl font-black text-[#041E42] mb-4">Taxation & Compliance</h2>
+                            <p class="text-gray-600 font-bold text-lg leading-relaxed">End-to-end direct and indirect tax support and optimization.</p>
+                        </div>
+                        <div class="md:w-2/3 md:border-l-2 border-gray-100 md:pl-16">
+                            <p class="text-gray-800 mb-10 leading-relaxed text-xl">Comprehensive tax solutions ensuring optimized, compliant outcomes. We assist with filing, planning, and representation before authorities to minimize risk and maximize efficiency.</p>
+                            <div class="grid sm:grid-cols-2 gap-6">
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Income Tax Returns (IT Returns)</span></div>
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">GST Returns & Regular Compliance</span></div>
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Corporate & Individual Tax Planning</span></div>
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Representation before Tax Authorities</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service: Transaction -->
+                    <div class="bg-white rounded-3xl p-10 md:p-16 border border-gray-100 shadow-md flex flex-col md:flex-row gap-16 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="md:w-1/3">
+                            <div class="w-20 h-20 bg-[#f4f7fb] rounded-2xl flex items-center justify-center mb-8 text-[#041E42] border border-gray-100 shadow-sm"><i data-lucide="scale" class="w-10 h-10"></i></div>
+                            <h2 class="text-3xl font-black text-[#041E42] mb-4">Transaction Advisory</h2>
+                            <p class="text-gray-600 font-bold text-lg leading-relaxed">Strategic guidance for complex corporate transactions.</p>
+                        </div>
+                        <div class="md:w-2/3 md:border-l-2 border-gray-100 md:pl-16">
+                            <p class="text-gray-800 mb-10 leading-relaxed text-xl">Guiding businesses through critical growth phases, acquisitions, and restructuring with meticulous financial analysis and objective valuation metrics.</p>
+                            <div class="grid sm:grid-cols-2 gap-6">
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Business Valuation</span></div>
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Mergers & Acquisitions (M&A)</span></div>
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Financial & Tax Due Diligence</span></div>
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Entity Structuring</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service: VCFO -->
+                    <div class="bg-white rounded-3xl p-10 md:p-16 border border-gray-100 shadow-md flex flex-col md:flex-row gap-16 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="md:w-1/3">
+                            <div class="w-20 h-20 bg-[#f4f7fb] rounded-2xl flex items-center justify-center mb-8 text-[#041E42] border border-gray-100 shadow-sm"><i data-lucide="trending-up" class="w-10 h-10"></i></div>
+                            <h2 class="text-3xl font-black text-[#041E42] mb-4">Virtual CFO & Funding</h2>
+                            <p class="text-gray-600 font-bold text-lg leading-relaxed">Board-level financial insight without full-time CFO cost.</p>
+                        </div>
+                        <div class="md:w-2/3 md:border-l-2 border-gray-100 md:pl-16">
+                            <p class="text-gray-800 mb-10 leading-relaxed text-xl">Strategic finance leadership integrated with your team to drive growth, manage cash flows, create robust project reports, and secure external capital.</p>
+                            <div class="grid sm:grid-cols-2 gap-6">
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Fundraising Support & Pitch Decks</span></div>
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Preparation of Project Reports</span></div>
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Cash flow management & budgeting</span></div>
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Board-ready MIS & performance dashboards</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service: Accounting -->
+                    <div class="bg-white rounded-3xl p-10 md:p-16 border border-gray-100 shadow-md flex flex-col md:flex-row gap-16 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="md:w-1/3">
+                            <div class="w-20 h-20 bg-[#f4f7fb] rounded-2xl flex items-center justify-center mb-8 text-[#041E42] border border-gray-100 shadow-sm"><i data-lucide="pie-chart" class="w-10 h-10"></i></div>
+                            <h2 class="text-3xl font-black text-[#041E42] mb-4">Accounting & Bookkeeping</h2>
+                            <p class="text-gray-600 font-bold text-lg leading-relaxed">Reliable, tech-enabled financial statement preparation.</p>
+                        </div>
+                        <div class="md:w-2/3 md:border-l-2 border-gray-100 md:pl-16">
+                            <p class="text-gray-800 mb-10 leading-relaxed text-xl">Keeping your financial records accurate, current, and decision-ready throughout the year leveraging modern accounting and ERP tools.</p>
+                            <div class="grid sm:grid-cols-2 gap-6">
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">End-to-end Bookkeeping</span></div>
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Statutory Financial Statement Prep</span></div>
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Payroll Processing</span></div>
+                                <div class="flex items-start gap-4 bg-[#f8fafc] p-4 rounded-xl border border-gray-100"><div class="bg-white p-1 rounded-full shadow-sm"><i data-lucide="check-circle" class="w-5 h-5 text-blue-600"></i></div><span class="text-gray-800 font-bold leading-tight">Accounts Payable/Receivable</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delivery Approach Banner -->
+                <div class="mt-24 bg-gradient-to-br from-[#041E42] to-[#0a2f60] text-white rounded-3xl p-12 md:p-20 flex flex-col md:flex-row justify-between items-center gap-12 shadow-2xl">
+                    <div class="max-w-3xl">
+                        <h3 class="text-3xl md:text-4xl font-black mb-6">Ready to elevate your financial framework?</h3>
+                        <p class="text-blue-100 text-xl leading-relaxed">We offer flexible engagement models tailored to your internal team's capacity. Utilize our expertise to streamline audits, optimize taxes, or lead complex transactions.</p>
+                    </div>
+                    <a href="https://calendly.com/pranavoswal-prakashmoswal/30min" target="_blank" class="bg-white text-[#041E42] px-10 py-5 rounded-full font-black text-lg hover:bg-gray-100 transition-transform transform hover:scale-105 whitespace-nowrap shrink-0 shadow-xl flex items-center gap-3">
+                        <i data-lucide="calendar" class="w-6 h-6"></i> Discuss an Engagement
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- === INSIGHTS PAGE === -->
+        <div id="insights" class="page-section py-24 animate-fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mb-20">
+                    <h1 class="text-5xl md:text-6xl font-black text-[#041E42] mb-8">Insights</h1>
+                    <p class="text-2xl text-gray-700 font-medium">Stay informed with the latest regulatory changes, strategic financial perspectives, and industry reports curated by our leadership team.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Insight 1 -->
+                    <article class="group cursor-pointer bg-white border border-gray-100 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                        <div class="h-56 bg-[#f4f7fb] overflow-hidden relative">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/10 to-transparent z-10"></div>
+                            <div class="w-full h-full flex items-center justify-center text-[#041E42] group-hover:scale-110 transition-transform duration-700">
+                                <i data-lucide="file-text" class="w-20 h-20 opacity-10"></i>
+                            </div>
+                        </div>
+                        <div class="p-10">
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="text-xs font-black uppercase tracking-widest text-[#041E42] bg-blue-50 px-4 py-2 rounded-lg border border-blue-100">Tax Update</span>
+                                <span class="text-sm text-gray-400 font-bold">Feb 15, 2026</span>
+                            </div>
+                            <h2 class="text-2xl font-black text-[#041E42] mb-4 group-hover:text-blue-600 transition-colors line-clamp-2 leading-tight">Key Changes in GST Compliance for Q1 2026</h2>
+                            <p class="text-gray-600 text-lg line-clamp-3 leading-relaxed">A comprehensive breakdown of the latest GST council decisions and how they impact fast-growing SMEs in the manufacturing sector.</p>
+                        </div>
+                    </article>
+                    <!-- Insight 2 -->
+                    <article class="group cursor-pointer bg-white border border-gray-100 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                        <div class="h-56 bg-[#f4f7fb] overflow-hidden relative">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/10 to-transparent z-10"></div>
+                            <div class="w-full h-full flex items-center justify-center text-[#041E42] group-hover:scale-110 transition-transform duration-700">
+                                <i data-lucide="file-text" class="w-20 h-20 opacity-10"></i>
+                            </div>
+                        </div>
+                        <div class="p-10">
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="text-xs font-black uppercase tracking-widest text-[#041E42] bg-blue-50 px-4 py-2 rounded-lg border border-blue-100">Financial Strategy</span>
+                                <span class="text-sm text-gray-400 font-bold">Jan 28, 2026</span>
+                            </div>
+                            <h2 class="text-2xl font-black text-[#041E42] mb-4 group-hover:text-blue-600 transition-colors line-clamp-2 leading-tight">Structuring Your Business for Efficient Fundraising</h2>
+                            <p class="text-gray-600 text-lg line-clamp-3 leading-relaxed">Understanding what investors look for in financial models and why meticulous project reports are essential before seeking capital.</p>
+                        </div>
+                    </article>
+                    <!-- Insight 3 -->
+                    <article class="group cursor-pointer bg-white border border-gray-100 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                        <div class="h-56 bg-[#f4f7fb] overflow-hidden relative">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/10 to-transparent z-10"></div>
+                            <div class="w-full h-full flex items-center justify-center text-[#041E42] group-hover:scale-110 transition-transform duration-700">
+                                <i data-lucide="file-text" class="w-20 h-20 opacity-10"></i>
+                            </div>
+                        </div>
+                        <div class="p-10">
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="text-xs font-black uppercase tracking-widest text-[#041E42] bg-blue-50 px-4 py-2 rounded-lg border border-blue-100">Regulatory</span>
+                                <span class="text-sm text-gray-400 font-bold">Jan 10, 2026</span>
+                            </div>
+                            <h2 class="text-2xl font-black text-[#041E42] mb-4 group-hover:text-blue-600 transition-colors line-clamp-2 leading-tight">Navigating NBFC Audits & Compliance Requirements</h2>
+                            <p class="text-gray-600 text-lg line-clamp-3 leading-relaxed">With RBI tightening norms, learn how proactive, risk-based internal audits are securing NBFCs from regulatory penalties.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <!-- === CONTACT PAGE === -->
+        <div id="contact" class="page-section py-24 bg-[#f8fafc] min-h-screen animate-fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mb-20">
+                    <h1 class="text-5xl md:text-6xl font-black text-[#041E42] mb-8">Get In Touch</h1>
+                    <p class="text-2xl text-gray-700 font-medium">Reach out to schedule a consultation, request a proposal, or learn more about how our services align with your business goals.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-16 items-start">
+                    
+                    <!-- Left Column: Contact Info & Map -->
+                    <div class="space-y-10">
+                        <div class="bg-white p-12 rounded-3xl border border-gray-100 shadow-md">
+                            <h3 class="text-3xl font-black text-[#041E42] mb-10">Contact Information</h3>
+                            <div class="space-y-10">
+                                <div class="flex items-start gap-6">
+                                    <div class="w-16 h-16 bg-[#f4f7fb] rounded-2xl flex items-center justify-center shrink-0 border border-gray-100 shadow-sm"><i data-lucide="map-pin" class="w-7 h-7 text-blue-600"></i></div>
+                                    <div>
+                                        <h4 class="font-black text-xl text-[#041E42] mb-2">Office Address</h4>
+                                        <p class="text-gray-700 text-lg leading-relaxed">3rd Floor, Ganga Collidium, Office No. 304/305, Bibwewadi, Pune, Maharashtra 411037</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-6">
+                                    <div class="w-16 h-16 bg-[#f4f7fb] rounded-2xl flex items-center justify-center shrink-0 border border-gray-100 shadow-sm"><i data-lucide="phone" class="w-7 h-7 text-blue-600"></i></div>
+                                    <div>
+                                        <h4 class="font-black text-xl text-[#041E42] mb-2">Phone</h4>
+                                        <p class="text-gray-700 text-lg mb-1">+91 8208448928</p>
+                                        <p class="text-gray-700 text-lg">+91 20 24240127</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-6">
+                                    <div class="w-16 h-16 bg-[#f4f7fb] rounded-2xl flex items-center justify-center shrink-0 border border-gray-100 shadow-sm"><i data-lucide="mail" class="w-7 h-7 text-blue-600"></i></div>
+                                    <div>
+                                        <h4 class="font-black text-xl text-[#041E42] mb-2">Email</h4>
+                                        <p class="text-gray-700 text-lg mb-1">pranavoswal@prakashmoswal.com</p>
+                                        <p class="text-gray-700 text-lg">pmo.pune@yahoo.in</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Google Maps Embed -->
+                        <div class="bg-white p-4 rounded-3xl border border-gray-100 shadow-md h-96 w-full overflow-hidden relative group">
+                            <div class="absolute inset-0 pointer-events-none rounded-3xl border-2 border-transparent group-hover:border-blue-100 transition-colors z-10"></div>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.095034638361!2d73.86178301540306!3d18.479268987433282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2ea9b2df94d33%3A0xc3f60f64b4c73df6!2sGanga%20Collidium!5e0!3m2!1sen!2sin!4v1655301824108!5m2!1sen!2sin" width="100%" height="100%" style="border: 0; border-radius: 1.25rem;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Contact Form via Formspree -->
+                    <div class="bg-white p-12 rounded-3xl border border-gray-100 shadow-md sticky top-32">
+                        <h3 class="text-3xl font-black text-[#041E42] mb-8">Send a Message</h3>
+                        
+                        <form action="https://formspree.io/f/mvzbjdzk" method="POST" class="space-y-8 animate-fade-in">
+                            <div class="grid grid-cols-2 gap-8">
+                                <div>
+                                    <label for="firstName" class="block text-sm font-black text-gray-700 mb-3 tracking-wide">First Name</label>
+                                    <input type="text" name="firstName" id="firstName" required class="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-5 py-4 text-lg focus:outline-none focus:border-[#041E42] focus:bg-white transition-all" placeholder="John">
+                                </div>
+                                <div>
+                                    <label for="lastName" class="block text-sm font-black text-gray-700 mb-3 tracking-wide">Last Name</label>
+                                    <input type="text" name="lastName" id="lastName" required class="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-5 py-4 text-lg focus:outline-none focus:border-[#041E42] focus:bg-white transition-all" placeholder="Doe">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-black text-gray-700 mb-3 tracking-wide">Email Address</label>
+                                <input type="email" name="email" id="email" required class="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-5 py-4 text-lg focus:outline-none focus:border-[#041E42] focus:bg-white transition-all" placeholder="john@company.com">
+                            </div>
+                            <div>
+                                <label for="service" class="block text-sm font-black text-gray-700 mb-3 tracking-wide">Service of Interest</label>
+                                <div class="relative">
+                                    <select name="service" id="service" class="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-5 py-4 text-lg focus:outline-none focus:border-[#041E42] focus:bg-white transition-all text-gray-800 appearance-none font-medium">
+                                        <option value="Audit & Assurance">Audit & Assurance</option>
+                                        <option value="Taxation & Compliance">Taxation & Compliance</option>
+                                        <option value="Transaction Advisory">Transaction Advisory (M&A, Valuation)</option>
+                                        <option value="Virtual CFO">Virtual CFO & Funding</option>
+                                        <option value="Accounting">Accounting & Bookkeeping</option>
+                                        <option value="Other">Other / General Inquiry</option>
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-6 text-gray-500">
+                                        <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-black text-gray-700 mb-3 tracking-wide">Message</label>
+                                <textarea name="message" id="message" rows="5" required class="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-5 py-4 text-lg focus:outline-none focus:border-[#041E42] focus:bg-white transition-all resize-none" placeholder="Tell us about your requirements..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-[#041E42] text-white font-black text-lg rounded-xl px-4 py-5 hover:bg-[#0a2f60] transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 duration-300">
+                                Submit Inquiry
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <footer class="bg-[#020d1c] text-white border-t border-gray-800 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="col-span-1 md:col-span-2 pr-8">
+                    <span class="font-bold text-2xl tracking-tighter text-white mb-4 block">Prakash M Oswal & Co.</span>
+                    <p class="text-gray-400 text-sm max-w-sm leading-relaxed mb-6">A Peer Reviewed Firm blending legacy expertise with modern financial insight. Committed to excellence in audit, taxation, and advisory.</p>
+                </div>
+                <div>
+                    <h3 class="font-bold tracking-wider uppercase text-xs mb-6 text-gray-400">Quick Links</h3>
+                    <ul class="space-y-4">
+                        <li><button onclick="navigateTo('home')" class="text-gray-300 hover:text-white text-sm transition-colors font-medium">Home</button></li>
+                        <li><button onclick="navigateTo('about')" class="text-gray-300 hover:text-white text-sm transition-colors font-medium">About Us</button></li>
+                        <li><button onclick="navigateTo('services')" class="text-gray-300 hover:text-white text-sm transition-colors font-medium">Services</button></li>
+                        <li><button onclick="navigateTo('contact')" class="text-gray-300 hover:text-white text-sm transition-colors font-medium">Contact</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold tracking-wider uppercase text-xs mb-6 text-gray-400">Contact</h3>
+                    <ul class="space-y-4 text-sm text-gray-300">
+                        <li class="flex items-start gap-3"><i data-lucide="map-pin" class="w-5 h-5 mt-0.5 shrink-0 text-blue-400"></i><span class="leading-relaxed">3rd Floor, Ganga Collidium, Office No. 304/305, Bibwewadi, Pune, Maharashtra 411037</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="phone" class="w-5 h-5 shrink-0 text-blue-400"></i><span>+91 8208448928</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="mail" class="w-5 h-5 shrink-0 text-blue-400"></i><span>pranavoswal@prakashmoswal.com</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">© 2026 Prakash M Oswal & Co. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/918208448928" target="_blank" class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#1ebd57] hover:scale-110 transition-all duration-300 z-50 flex items-center justify-center group" aria-label="Chat on WhatsApp">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+        <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs group-hover:ml-2 transition-all duration-300 ease-in-out font-bold text-sm">Chat with us</span>
+    </a>
+
+    <!-- ==========================================
+         JAVASCRIPT LOGIC
+         ========================================== -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Page Navigation Logic
+        function navigateTo(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+            // Show target page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+
+            // Update Nav Links styling
+            document.querySelectorAll('.nav-link').forEach(el => {
+                if(el.getAttribute('data-target') === pageId) {
+                    el.classList.add('text-[#041E42]', 'border-b-2', 'border-[#041E42]', 'pb-1');
+                    el.classList.remove('text-gray-500');
+                } else {
+                    el.classList.remove('text-[#041E42]', 'border-b-2', 'border-[#041E42]', 'pb-1');
+                    el.classList.add('text-gray-500');
+                }
+            });
+
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if(!mobileMenu.classList.contains('hidden')) {
+                toggleMobileMenu();
+            }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                menu.classList.add('hidden');
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons(); // Refresh icons
+        }
+
+        // Interactive Service Tabs Logic
+        function showService(pagePrefix, serviceId) {
+            // Hide all details in this section
+            document.querySelectorAll(`.service-detail-${pagePrefix}`).forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('block');
+            });
+            
+            // Reset all tabs in this section
+            document.querySelectorAll(`.service-tab-${pagePrefix}`).forEach(el => {
+                el.classList.remove('bg-[#041E42]', 'text-white', 'shadow-xl', 'shadow-blue-900/20', 'scale-105', 'border-transparent');
+                el.classList.add('bg-white', 'border-2', 'border-gray-100', 'text-gray-700');
+                
+                const iconContainer = el.querySelector('.icon-container');
+                iconContainer.classList.remove('bg-white/20', 'text-white');
+                iconContainer.classList.add('bg-[#f4f7fb]', 'text-[#041E42]');
+                
+                const chevron = el.querySelector('.chevron');
+                if(chevron) chevron.classList.add('hidden');
+            });
+
+            // Show selected detail
+            const targetDetail = document.getElementById(`detail-${pagePrefix}-${serviceId}`);
+            if (targetDetail) {
+                targetDetail.classList.remove('hidden');
+                targetDetail.classList.add('block');
+            }
+
+            // Highlight selected tab
+            const activeTab = document.getElementById(`tab-${pagePrefix}-${serviceId}`);
+            if (activeTab) {
+                activeTab.classList.remove('bg-white', 'border-2', 'border-gray-100', 'text-gray-700');
+                activeTab.classList.add('bg-[#041E42]', 'text-white', 'shadow-xl', 'shadow-blue-900/20', 'scale-105', 'border-transparent');
+                
+                const activeIconContainer = activeTab.querySelector('.icon-container');
+                activeIconContainer.classList.remove('bg-[#f4f7fb]', 'text-[#041E42]');
+                activeIconContainer.classList.add('bg-white/20', 'text-white');
+                
+                const activeChevron = activeTab.querySelector('.chevron');
+                if(activeChevron) activeChevron.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
